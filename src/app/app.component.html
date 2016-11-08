@@ -1,0 +1,42 @@
+<h1>
+  Template above the table - this will work.
+</h1>
+<p-dataTable [value]="items" 
+              expandableRows="true" 
+              [paginator]="true"
+              reorderableColumns="true" 
+              [rows]="15">
+  <template let-item>
+    <p>Description</p>
+    <p>{{item.description}}</p>
+  </template>  
+  <p-column [style]="{'width':'38px'}" expander="true" styleClass="col-icon"></p-column>
+  <p-column field="timestamp" header="Time Stamp" [sortable]="true" [filter]="true" filterMatchMode="contains">
+    <template let-col let-item="rowData" pTemplate type="body">
+      <span>{{item.timestamp | date:'HH:mm:ss, dd MMM y' }}</span>
+    </template>
+  </p-column>
+  <p-column field="name" header="Name" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>  
+</p-dataTable>
+
+
+<h1>
+  Template below the table - this will crash the page.
+</h1>
+<p-dataTable [value]="items" 
+              expandableRows="true" 
+              [paginator]="true"
+              reorderableColumns="true" 
+              [rows]="15">
+  <p-column [style]="{'width':'38px'}" expander="true" styleClass="col-icon"></p-column>
+  <p-column field="timestamp" header="Time Stamp" [sortable]="true" [filter]="true" filterMatchMode="contains">
+    <template let-col let-item="rowData" pTemplate type="body">
+      <span>{{item.timestamp | date:'HH:mm:ss, dd MMM y' }}</span>
+    </template>
+  </p-column>
+  <p-column field="name" header="Name" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+  <template let-item>
+    <p>Description</p>
+    <p>{{item.description}}</p>
+  </template>    
+</p-dataTable>
